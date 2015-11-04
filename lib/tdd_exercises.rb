@@ -35,3 +35,18 @@ class Array
     result
   end
 end
+
+def stock_picker(prices)
+  result = []
+  best_profit = 0
+  (0...(prices.length - 1)).each do |i|
+    ((i + 1)...prices.length).each do |j|
+      current_profit = prices[j] - prices[i]
+      if current_profit > best_profit
+        result = [i, j]
+        best_profit = current_profit
+      end
+    end
+  end
+  result
+end

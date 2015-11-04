@@ -90,3 +90,31 @@ describe "Array methods" do
     end
   end
 end
+
+describe "Stock Picker" do
+  let(:prices) {[50, 5, 7, 2, 3, 12]}
+
+  it "finds the most profitable pair" do
+    expect(stock_picker(prices)).to eq([3, 5])
+  end
+
+  it "searches in correct order" do
+    expect(stock_picker(prices)).to_not eq([0, 3])
+    expect(stock_picker(prices)).to_not eq([3, 0])
+  end
+
+  it "returns empty array if no profitable pairs" do
+    empty = []
+    one = [100]
+    crash = [100, 75, 50, 25, 0]
+
+    expect(stock_picker(empty)).to eq([])
+    expect(stock_picker(one)).to eq([])
+    expect(stock_picker(crash)).to eq([])
+  end
+
+  it "raises an error if passed a non-array" do
+    expect { stock_picker("array") }.to raise_error
+  end
+
+end
