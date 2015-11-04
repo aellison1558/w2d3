@@ -3,15 +3,20 @@ require 'tdd_exercises'
 
 describe "Array methods" do
   describe "Array#my_uniq" do
-    let(:sample_array) {[1, 2, 1, 3, 3]}
+    let(:sample_array) { [1, 1, 2] }
 
     it "removes duplicates" do
-      expect(sample_array.my_uniq).to eq([1, 2, 3])
+      expect(sample_array.my_uniq).to eq([1, 2])
+    end
+
+    it "returns elements in order of first appearance" do
+      array = [1, 2, 1]
+      expect(array.my_uniq).to eq([1, 2])
     end
 
     it "doesn't modify original" do
       sample_array.my_uniq
-      expect(sample_array).to eq([1, 2, 1, 3, 3])
+      expect(sample_array).to eq([1, 1, 2])
     end
 
     it "handles an empty array" do
